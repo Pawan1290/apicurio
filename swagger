@@ -1,0 +1,97 @@
+---
+openapi: 3.0.2
+info:
+  title: Json Placeholder
+  version: 1.0.0
+  description: Using sample Json Placeholder API for practicing APICURIO.
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+paths:
+  /posts:
+    get:
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Post'
+          description: Return all post.
+    post:
+      responses:
+        "201":
+          description: 'Return post id of newly created post. '
+  /posts/{id}:
+    get:
+      parameters:
+      - name: id
+        description: Post ID
+        schema:
+          type: integer
+        in: path
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+          description: Rerurn detail of given post id.
+      deprecated: false
+    put:
+      parameters:
+      - name: id
+        description: Post ID
+        schema:
+          type: integer
+        in: path
+        required: true
+      responses:
+        "200":
+          description: This url will update given post id detail and returns id.
+    delete:
+      parameters:
+      - name: id
+        description: Post ID
+        schema:
+          type: integer
+        in: path
+        required: true
+      responses:
+        "200":
+          description: This URL will delete given id post and will return nothing.
+    parameters:
+    - name: id
+      description: Post ID
+      schema:
+        type: integer
+      in: path
+      required: true
+components:
+  schemas:
+    Post:
+      title: Root Type for Post
+      description: Post sample format.
+      type: object
+      properties:
+        userId:
+          format: int32
+          type: integer
+        id:
+          format: int32
+          type: integer
+        title:
+          type: string
+        body:
+          type: string
+      example:
+        userId: 1
+        id: 1
+        title: sunt aut facere repellat provident occaecati excepturi optio reprehenderit
+        body: |-
+          quia et suscipit
+          suscipit recusandae consequuntur expedita et cum
+          reprehenderit molestiae ut ut quas totam
+          nostrum rerum est autem sunt rem eveniet architecto
